@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+namespace sfFeed2Plugin;
+
 /**
  * sfRss10Feed.
  *
@@ -84,9 +86,9 @@ class sfRss10Feed extends sfRssFeed
     $xml = array();
     $xml[] = '<?xml version="1.0" encoding="'.$this->getEncoding().'" ?>';
     $xml[] = '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns="http://purl.org/rss/1.0/">';
-    $xml[] = '  <channel rdf:about="'.htmlspecialchars($this->getLink()).'">';
+    $xml[] = '  <channel rdf:about="'.htmlspecialchars($this->context->getController()->genUrl($this->getLink(), true)).'">';
     $xml[] = '    <title>'.htmlspecialchars($this->getTitle()).'</title>';
-    $xml[] = '    <link>'.htmlspecialchars($this->getLink()).'</link>';
+    $xml[] = '    <link>'.htmlspecialchars($this->context->getController()->genUrl($this->getLink(), true)).'</link>';
     $xml[] = '    <description>'.htmlspecialchars($this->getDescription()).'</description>';
     $xml[] = '    <items>';
     $xml[] = '      <rdf:Seq>';
@@ -110,7 +112,7 @@ class sfRss10Feed extends sfRssFeed
     $xml = array();
     foreach ($this->getItems() as $item)
     {
-      $xml[] = '        <rdf:li rdf:resource="'.htmlspecialchars($item->getLink()).'" />';
+      $xml[] = '        <rdf:li rdf:resource="'.htmlspecialchars($this->context->getController()->genUrl($item->getLink(), true)).'" />';
     }
 
     return $xml;
@@ -126,9 +128,9 @@ class sfRss10Feed extends sfRssFeed
     $xml = array();
     foreach ($this->getItems() as $item)
     {
-      $xml[] = '  <item rdf:about="'.htmlspecialchars($item->getLink()).'">';
+      $xml[] = '  <item rdf:about="'.htmlspecialchars($this->context->getController()->genUrl($item->getLink(), true)).'">';
       $xml[] = '    <title>'.htmlspecialchars($item->getTitle()).'</title>';
-      $xml[] = '    <link>'.htmlspecialchars($item->getLink()).'</link>';
+      $xml[] = '    <link>'.htmlspecialchars($this->context->getController()->genUrl($item->getLink(), true)).'</link>';
       if ($item->getDescription())
       {
         $xml[] = '    <description>'.htmlspecialchars($item->getDescription()).'</description>';

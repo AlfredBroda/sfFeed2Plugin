@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+namespace sfFeed2Plugin;
+
 /**
  *
  * Adds support for icons/images for atom and rss feeds in an unified extensible way.

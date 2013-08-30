@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+namespace sfFeed2Plugin;
+
 /**
  * sfFeedItem.
  *
@@ -100,7 +102,7 @@ class sfFeedItem
     else if($this->content)
     {
       $description = strip_tags($this->content);
-      $description_max_length = sfConfig::get('app_feed_item_max_length', 100);
+      $description_max_length = 250;
       if (strlen($description) > $description_max_length)
       {
         $description = substr($description, 0, $description_max_length - strlen($description)).'[...]';
